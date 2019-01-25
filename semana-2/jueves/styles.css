@@ -9,9 +9,24 @@ header{
 }
 
 header nav{
-    background: red;
+    height: 100%;
 }
 
 header nav ul.menu-container {
     float: right;
+    list-style: none;
+    height: 100%;
+    width: 24%
+}
+
+header nav ul.menu-container > li{
+    float: left;
+    padding: 11.3% 5%;
+    color: black;
+}
+
+header nav ul.menu-container > li:hover{
+    color: white;
+    background-color: rgba(0, 0, 0, .6);
+    transition: all .3s;
 }
