@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    background-color: #F44336;
+    height: 60px;
+}
+
+header nav{
+    background: red;
+}
+
+header nav ul.menu-container {
+    float: right;
+}
