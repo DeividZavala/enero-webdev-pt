@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    height: 60px;
+    background-color: red;
+}
+
+header nav{
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+header nav ul {
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+
+header nav ul > li{
+    margin: 20px 5%;
+}
+
+header nav ul > li:hover{
+    cursor: pointer;
+}
