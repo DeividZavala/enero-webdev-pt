@@ -22,9 +22,45 @@ header nav ul {
 }
 
 header nav ul > li{
-    margin: 20px 5%;
+    padding: 20px 5%;
 }
 
 header nav ul > li:hover{
     cursor: pointer;
+}
+
+
+section.background{
+    background-image: url("https://themes.pixiesquad.com/pixiehuge/orange-elite/wp-content/uploads/2017/06/main-hero-2.jpg");
+    height: calc(100vh - 60px);
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section.background h1{
+    color: white;
+}
+
+
+@media (max-width: 800px){
+    header{
+        background: violet;
+    }
+}
+
+@media (max-width: 470px){
+    section.background{
+        background-image: url("https://cdn.wallpapersafari.com/5/7/MtARLd.jpg")
+    }
+    header{
+        background-color: blue;
+    }
+}
+
+
+li:not(:last-child){
+    color: white;
 }
