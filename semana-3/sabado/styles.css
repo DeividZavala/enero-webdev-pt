@@ -1,0 +1,9 @@
+nav.main-navbar{
+    height: 60px;
+}
+
+.uk-navbar-container:not(.uk-navbar-transparent){
+    background: red;
+    height: 60px;
+}
+
