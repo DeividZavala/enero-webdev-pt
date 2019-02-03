@@ -25,7 +25,7 @@ function getTotalPrice() {
     let u = parseInt(containers[r].childNodes[3].firstElementChild.innerText.slice(1));
     let qty = parseInt(containers[r].childNodes[5].childNodes[3].value)
     // agregando total por producto
-    containers[r].childNodes[7].firstElementChild.innerText = `$${u * qty}`
+    containers[r].childNodes[7].firstElementChild.innerText = `$${(u * qty).toFixed(2)}`
   }
 
 
