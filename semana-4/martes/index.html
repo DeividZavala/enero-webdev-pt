@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css">
     <title>Document</title>
 </head>
 <body>
@@ -23,9 +24,9 @@
     <div>
         <form action="">
 
-            <input type="text" name="perro">
+            <input id="user" type="text" name="perro">
 
-            <input type="password" name="password">
+            <input id="password" type="password" name="password" class="perrote">
             <!-- <input type="submit" value="picale"> -->
             <button type="submit">picale btn</button>
         </form>
@@ -51,10 +52,32 @@
 
             console.log($("ul li:nth-child(1)"))
 
+            $("ul li:nth-child(1)").click(function(){
+                $(this).toggleClass("active")
+            })
+
+            /*$("ul li:nth-child(1)").click(function(){
+                if($("ul li:nth-child(1)").hasClass("active")){
+                    $("ul li:nth-child(1)").removeClass("active")
+                }else{
+                    $("ul li:nth-child(1)").addClass("active")
+                }
+            })*/
+
+
+            let input = $(":password").css("backgroundColor", "red")
+
 
             $("form").submit(function (e){
                 e.preventDefault();
-                console.log("event", e);
+                let user = $("#user").val();
+                let pass = $(":password").val();
+
+                let clases = $(":password").attr("class")
+
+                let data = { user, pass }
+
+                console.log(data, clases);
             })
             //$("form").on("submit")
 
