@@ -25,7 +25,18 @@
         $(document).ready(function(){
             var li_list = $("ul li");
             li_list[2].innerText = "ay perro trais el omnitrix"
-            console.log(li_list[2])
+            
+
+            /*$("ul li").click(function (){
+                console.log("epale epale que me estas picando")
+            })*/
+
+            $("ul li").on("mouseleave", function (){
+                console.log("epale epale que me estas picando")
+            })
+
+
+            console.log($("ul li:nth-child(1)"))
         })
 
     </script>
