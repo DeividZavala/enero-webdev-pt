@@ -10,12 +10,25 @@
 
 
     <div>
+        <div></div>
         <ul>
             <li class="list-item">Item 1</li>
             <li class="list-item">Item 2</li>
             <li id="perro">Item 3</li>
         </ul>
         <div class="list-item"></div>
+    </div>
+
+
+    <div>
+        <form action="">
+
+            <input type="text" name="perro">
+
+            <input type="password" name="password">
+            <!-- <input type="submit" value="picale"> -->
+            <button type="submit">picale btn</button>
+        </form>
     </div>
     
 
@@ -31,12 +44,20 @@
                 console.log("epale epale que me estas picando")
             })*/
 
-            $("ul li").on("mouseleave", function (){
+
+            $("ul li:not(:first-child)").on("click", function (){
                 console.log("epale epale que me estas picando")
             })
 
-
             console.log($("ul li:nth-child(1)"))
+
+
+            $("form").submit(function (e){
+                e.preventDefault();
+                console.log("event", e);
+            })
+            //$("form").on("submit")
+
         })
 
     </script>
