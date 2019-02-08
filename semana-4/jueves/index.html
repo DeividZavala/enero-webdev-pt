@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .item{
+        background: red;
+        display: none;
+    }
+    nav{
+        height: 60px;
+        background: blue;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        color: white;
+    }
+
+    .menu{
+        position: relative;
+    }
+    .submenu{
+        position: absolute;
+        top: 38px;
+        background: black;
+        left: -93px;
+        display: none;
+    }
+</style>
+<body>
+
+    <nav>
+        <div class="menu">
+            <span>menu</span>
+            <div class="submenu">
+                <ul>
+                    <li>Perfil</li>
+                    <li>configuracion</li>
+                    <li>faq</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="item">
+        perro
+    </div>
+
+    <button>picale</button>
+
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+  <script>
+      
+      $(document).ready(function(){
+          console.log("ya estoy al 100")
+
+            $("button").click(function(){
+                $(".item").fadeToggle(1000);
+            })
+
+            $("span").click(function(){
+                $(".submenu").fadeToggle();
+            })
+
+      })
+  
+  </script>
+
+</body>
+</html>
