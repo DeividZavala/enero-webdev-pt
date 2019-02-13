@@ -70,3 +70,7 @@ function roundedRect(ctx, x=12, y=12, width=150, height=50, radius=15) {
     ctx.drawImage(img, 20, 20, 150, 100);
   }
 
+
+  document.addEventListener("keydown", e => {
+        console.log(e.key);
+  })
