@@ -43,6 +43,7 @@ function roundedRect(ctx, x=12, y=12, width=150, height=50, radius=15) {
 
 
   ctx.beginPath();
+  ctx.lineCap = "round";
   ctx.lineWidth = 20
   ctx.strokeStyle = "#fff"
   ctx.arc(30, 150, 70, 0, Math.PI*1.5, true);
@@ -52,3 +53,20 @@ function roundedRect(ctx, x=12, y=12, width=150, height=50, radius=15) {
   ctx.beginPath();
   ctx.arc(30, 150, 110, 0, Math.PI*1.5, true);
   ctx.stroke()
+
+  ctx.fillStyle = "black";
+  ctx.strokeStyle = "black";
+  ctx.lineWidth = 1
+  ctx.font = "20px Roboto"
+  ctx.strokeText("ay mijo te salio", 30, 185)
+
+
+  ctx.clearRect(0,0,200,200)
+
+
+  let img = new Image();
+  img.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKjAJWIGsPXjeArOuPrMoeGfhJVXqTtv7l1-zxW1zaIz8exZnc"
+  img.onload = function(){
+    ctx.drawImage(img, 20, 20, 150, 100);
+  }
+
