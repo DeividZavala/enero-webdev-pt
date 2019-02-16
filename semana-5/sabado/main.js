@@ -4,6 +4,7 @@ var pipes = [];
 var frames = 0;
 var gravity = 2;
 var interval;
+var score = 0;
 
 
 /*class Item{
@@ -35,6 +36,12 @@ class Flappy {
         this.image.src = "./images/flappy.png"
     }
 
+    collision(item){
+        return  (this.x < item.x + item.width) &&
+                (this.x + this.width > item.x) &&
+                (this.y < item.y + item.height) &&
+                (this.y + this.height > item.y);
+    }
 
     rise(){
         this.y -= 60;
@@ -76,6 +83,16 @@ class Background{
         this.image.src = "./images/bg.png";
     }
 
+
+    gameOver(){
+        ctx.font = "40px Avenir"
+        ctx.fillText("Game Over", 300, 190);
+        ctx.font = "20px Avenir"
+        ctx.fillText("Press 'esc' to play again", 300, 230);
+        clearInterval(interval);
+        interval = undefined;
+    }
+
     draw(){
         this.x--
         if(this.x < -canvas.width) this.x = 0;
@@ -99,22 +116,50 @@ function generatePipes(){
 
 function drawPipes(){
     pipes.forEach( (pipe, index) => {
+        if(pipe.x < -30) {
+            score++
+            return pipes.splice(index, 1);
+        }
         pipe.draw();
+        if(flappy.collision(pipe)){
+            fondo.gameOver();
+        }
     })
 }
 
-interval = setInterval(function(){
+function update(){
     frames++
     ctx.clearRect(0,0, canvas.width, canvas.heigth);
     fondo.draw();
-    flappy.draw();
     generatePipes();
     drawPipes();
-}, 1000/60)
+    flappy.draw();
+    ctx.font = "30px Avenir"
+    ctx.fillText(score, 10, 30);
+    
+}
+
+function start(){
+    interval = setInterval(update, 1000/60);
+}
+
+function restart(){
+    if(interval !== undefined) return;
+    score = 0;
+    frames = 0;
+    interval = undefined;
+    pipes = [];
+    start();
+}
 
 
 addEventListener("keydown", function(e){
     if(e.keyCode === 32){
         flappy.rise();
     }
+    if(e.keyCode === 27){
+        restart();
+    }
 })
+
+start();
