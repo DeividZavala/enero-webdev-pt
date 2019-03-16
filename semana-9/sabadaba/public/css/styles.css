@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: blue;
+}
+
+img {
+  width: 60%;
+  height: 200px;
+}
