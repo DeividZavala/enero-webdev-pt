@@ -1,0 +1,50 @@
+<div class="cards-container">
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="http://kenikin.com/w/nba-players-Wallpaper-Full-HD-number-yM1.jpg"
+            alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Players</h5>
+            <p class="card-text">Check the top NBA players, according to Ironhack Curriculum staff.</p>
+            <a href="/players" class="btn btn-primary">See Players</a>
+        </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_OERZ8iocfWup4uRUhjxY_zncbKN02QawHJMqp9qa2RjC6PaI"
+            alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Teams</h5>
+            <p class="card-text">Here we can check all NBA Teams..</p>
+            <a href="/teams" class="btn btn-primary">See Teams</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{{#if name}}
+hay user
+{{else}}
+<div>
+    no hay usuario
+</div>
+{{/if}}
+
+{{#unless name}}
+no hay usuario
+{{/unless}}
+
+<ul>
+    {{#each students as |student|}}
+    <li class="perro">{{student}}: {{@index}}</li>
+    {{/each}}
+</ul>
+
+{{#with address}}
+<p>{{street}}, {{number}}</p>
+{{/with}}
+
+<h1>Ironhacker Be Like por que el {{{name}}} es bien manchado</h1>
+<img src="https://media.giphy.com/media/l0MYEqEzwMWFCg8rm/giphy.gif">
