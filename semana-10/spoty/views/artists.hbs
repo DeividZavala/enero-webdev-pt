@@ -1,0 +1,37 @@
+<section class="uk-section">
+    <div class="uk-container">
+        <div class="uk-grid-match uk-grid-small" uk-grid>
+            {{#each items as |artist|}}
+            <div class="uk-card uk-card-default uk-width-1-4@m">
+                <div class="uk-card-header">
+                    <div class="uk-width-expand">
+                        <h3 class="uk-card-title uk-margin-remove-bottom">{{artist.name}}</h3>
+                        <p class="uk-text-meta uk-margin-remove-top">
+                            Seguidores: {{artist.followers.total}}
+                        </p>
+                    </div>
+                </div>
+                <div class="uk-card-media-top">
+                    <img src="{{artist.images.[1].url}}" alt="{{artist.name}}">
+                </div>
+                <div class="uk-card-body uk-padding-small">
+                    <strong>Popularidad: {{artist.popularity}}</strong>
+                    <h3 class="uk-heading-divider">Géneros</h3>
+                    <div>
+                        {{#each artist.genres as |genre|}}
+                        <span class="uk-label uk-label-warning">{{genre}}</span>
+                        {{else}}
+                        <div class="uk-alert-primary" uk-alert>
+                            No hay géneros disponibles
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+                <div class="uk-card-footer">
+                    <a href="/albums/{{artist.id}}" class="uk-button uk-button-text">Ver albums</a>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</section>

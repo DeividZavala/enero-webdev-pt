@@ -1,0 +1,25 @@
+<section class="uk-section">
+    <div class="uk-container">
+        <div class="uk-grid-match uk-grid-small uk-child-width-1-4@m" uk-grid>
+            {{#each items as |album|}}
+            <div>
+                <div class="uk-card uk-card-default">
+                    <div class="uk-card-media-top">
+                        <img src="{{album.images.[1].url}}" alt="{{album.name}}">
+                    </div>
+                    <div class="uk-card-body uk-height-medium">
+                        <h3 class="uk-card-title">{{album.name}}</h3>
+                        <div>
+                            <span class="uk-label uk-label-success">{{album.tracks}} tracks</span>
+                        </div>
+                        <strong>Fecha de lanzamiento: {{album.release_date}}</strong>
+                    </div>
+                    <div class="uk-card-footer">
+                        <a href="/albums/{{album.id}}/tracks" class="uk-button uk-button-text">Lista de canciones</a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</section>

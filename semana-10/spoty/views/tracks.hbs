@@ -1,0 +1,35 @@
+<section class="uk-section">
+    <div class="uk-container">
+        <table class="uk-table uk-table-divider">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Información</th>
+                    <th>Audio</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each items as |song|}}
+                <tr>
+                    <td>
+                        {{song.name}}
+                    </td>
+                    <td>
+                        {{#if song.explicit}}
+                        <span class="uk-label uk-label-danger">EXPLICIT</span>
+                        {{/if}}
+                        <div>
+                            <strong>Duración:{{song.duration_ms}}</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <audio src="{{song.preview_url}}" controls>
+                            Your browser does not support the <code>audio</code> element.
+                        </audio>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</section>
