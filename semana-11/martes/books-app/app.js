@@ -52,6 +52,8 @@ app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 app.locals.titlee = "Express - Generated with IronGenerator";
 
 const index = require("./routes/index");
+const authors = require("./routes/authors");
 app.use("/", index);
+app.use("/authors", authors);
 
 module.exports = app;

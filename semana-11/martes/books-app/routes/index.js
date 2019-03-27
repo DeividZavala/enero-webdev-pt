@@ -24,9 +24,12 @@ router.get("/books", (req, res) => {
 
 router.get("/detail/:id", (req, res) => {
   const { id } = req.params;
-  Book.findById(id).then(book => {
-    res.render("detail", book);
-  });
+  Book.findById(id)
+    .populate("author")
+    .then(book => {
+      console.log(book);
+      res.render("detail", book);
+    });
 });
 
 router.get("/new", (req, res) => {
