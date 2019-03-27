@@ -1,30 +1,36 @@
-<form action="/new" method="POST">
+{{#if title}}
+<h2>Editando {{title}}</h2>
+{{else}}
+<h2>Creando libro</h2>
+{{/if}}
+
+<form {{#if _id}} action="/{{_id}}/edit" {{else}} action="/new" {{/if}} method="POST">
 
     <div>
         <label for="">
             Title:
-            <input type="text" name="title">
+            <input type="text" name="title" value="{{title}}">
         </label>
     </div>
 
     <div>
         <label for="">
             Author:
-            <input type="text" name="author">
+            <input type="text" name="author" value="{{author}}">
         </label>
     </div>
 
     <div>
         <label for="">
             Rating:
-            <input type="text" name="rating">
+            <input type="text" name="rating" value="{{rating}}">
         </label>
     </div>
 
     <div>
         <label for="">
             Description:
-            <textarea name="description" id="" cols="30" rows="10"></textarea>
+            <textarea name="description" id="" cols="30" rows="10">{{description}}</textarea>
         </label>
     </div>
     <button type="submit">Picale morro</button>

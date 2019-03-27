@@ -39,4 +39,20 @@ router.post("/new", (req, res) => {
   });
 });
 
+router.get("/:id/edit", (req, res) => {
+  const { id } = req.params;
+  Book.findById(id).then(book => {
+    res.render("new", book);
+  });
+});
+
+router.post("/:id/edit", (req, res) => {
+  const { id } = req.params;
+  Book.findByIdAndUpdate(id, { $set: { ...req.body } }, { new: true }).then(
+    book => {
+      res.redirect(`/detail/${book._id}`);
+    }
+  );
+});
+
 module.exports = router;
