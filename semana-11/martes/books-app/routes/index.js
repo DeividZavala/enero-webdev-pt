@@ -29,4 +29,14 @@ router.get("/detail/:id", (req, res) => {
   });
 });
 
+router.get("/new", (req, res) => {
+  res.render("new");
+});
+
+router.post("/new", (req, res) => {
+  Book.create(req.body).then(() => {
+    res.redirect("/books");
+  });
+});
+
 module.exports = router;
