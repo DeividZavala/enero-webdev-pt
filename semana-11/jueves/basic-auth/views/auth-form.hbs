@@ -3,7 +3,10 @@
   <input type="text" name="username" placeholder="Your username">
 
   <label for="password">Password</label><br>
-  <input type="password" name="password" placeholder="********">
+  <input type="password" name="password" placeholder="********" required>
 
   <button type="submit">Create account</button>
+  {{#if err}}
+  <p>{{err}}</p>
+  {{/if}}
 </form>
