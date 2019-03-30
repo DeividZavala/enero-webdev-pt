@@ -1,0 +1,38 @@
+<form {{#if login}} action="/auth/login" {{else}} action="/auth/register" {{/if}} method="POST">
+  <div>
+    <label for="">
+      Email:
+      <input type="email" name="email">
+    </label>
+  </div>
+  <div>
+    <label for="">
+      password:
+      <input type="password" name="password">
+    </label>
+  </div>
+
+  {{#unless login}}
+  <div>
+    <label for="">
+      Confirm password:
+      <input type="password" name="password-confirm">
+    </label>
+  </div>
+  {{/unless}}
+
+  <button type="submit">
+    {{#if login}}
+    Iniciar sesión
+    {{else}}
+    Crear cuenta
+    {{/if}}
+  </button>
+
+  {{#if login}}
+  <a href="/auth/register">Aun no tienes cuenta?</a>
+  {{else}}
+  <a href="/auth/login">Ya tienes cuenta?</a>
+  {{/if}}
+
+</form>
