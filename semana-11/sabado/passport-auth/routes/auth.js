@@ -13,8 +13,7 @@ router.post(
     successRedirect: "/private",
     failureRedirect: "/auth/login",
     failureFlash: "Email o contraseña invalidos"
-  }),
-  (req, res) => {}
+  })
 );
 
 router.get("/register", (req, res) => {

@@ -1,13 +1,12 @@
-<h1>Bienvenido, {{user.email}}</h1>
+<h1>eres admin perro</h1>
 
 <ul>
   {{#each properties as |property|}}
   <li>
     {{property.name}} creada por {{property.owner.email}}
     <div>
-      {{#if property.canUpdate}}
       <a href="">editar</a>
-      {{/if}}
+
     </div>
   </li>
   {{/each}}
