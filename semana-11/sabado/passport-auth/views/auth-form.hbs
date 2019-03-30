@@ -16,7 +16,7 @@
   <div>
     <label for="">
       Confirm password:
-      <input type="password" name="password-confirm">
+      <input type="password" name="passwordConfirm">
     </label>
   </div>
   {{/unless}}
@@ -28,6 +28,10 @@
     Crear cuenta
     {{/if}}
   </button>
+
+  {{#if err}}
+  <p style="color:red">{{err}}</p>
+  {{/if}}
 
   {{#if login}}
   <a href="/auth/register">Aun no tienes cuenta?</a>
