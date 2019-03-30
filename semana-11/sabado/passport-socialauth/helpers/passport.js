@@ -47,3 +47,5 @@ passport.deserializeUser((id, cb) => {
       cb(err);
     });
 });
+
+module.exports = passport;
