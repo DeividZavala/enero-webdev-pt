@@ -35,7 +35,6 @@ router.get("/private", isAuth, (req, res) => {
           ? { ...property._doc, canUpdate: true }
           : property;
       });
-      console.log(properties);
       res.render("private", { user, properties });
     });
 });

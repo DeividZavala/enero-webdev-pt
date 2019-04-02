@@ -10,6 +10,7 @@ const logger = require("morgan");
 const path = require("path");
 const session = require("express-session");
 const passport = require("./helpers/passport");
+const MongoStore = require("connect-mongo")(session);
 
 mongoose
   .connect("mongodb://localhost/passport-auth", { useNewUrlParser: true })
@@ -39,6 +40,13 @@ app.use(cookieParser());
 app.use(
   session({
     secret: process.env.SECRET,
+    cookie: {
+      maxAge: 600000
+    },
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 // 1 day
+    }),
     saveUninitialized: true,
     resave: true
   })
