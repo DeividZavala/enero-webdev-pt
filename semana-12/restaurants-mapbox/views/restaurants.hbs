@@ -1,0 +1,44 @@
+<h1>Restaurants</h1>
+
+<div id="map" style="width: 100%; height: 400px;"></div>
+<script>
+  mapboxgl.accessToken =
+    "pk.eyJ1IjoiY3J1c2VkbW9zcyIsImEiOiJjanUwYWJpcTIwMGlxNDRxbnVrbzRlZ2ZwIn0.JFaXPkdL0AJ7Vbtyc8lD4A";
+  var map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/mapbox/streets-v11"
+  });
+
+  map.addControl(
+    new MapboxDirections({
+      accessToken: mapboxgl.accessToken
+    }),
+    "top-left"
+  );
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        let { longitude, latitude } = position.coords;
+
+        const user_position = [longitude, latitude];
+
+        map.setCenter(user_position).setZoom(15);
+
+        const popup = new mapboxgl.Popup().setText("Ya te encontré mijo");
+
+        const marker = new mapboxgl.Marker()
+          .setLngLat(user_position)
+          .setPopup(popup)
+          .addTo(map);
+      },
+      err => {
+        console.log("No te dieron chance morro", err);
+      }
+    );
+  } else {
+    console.log("Usa chrome mijo");
+  }
+
+  map.addControl(new mapboxgl.NavigationControl(), "bottom-right");
+</script>

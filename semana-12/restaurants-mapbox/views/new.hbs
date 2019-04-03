@@ -1,0 +1,49 @@
+<form action="">
+  <div>
+    <label for="">
+      Name:
+      <input type="text" />
+    </label>
+  </div>
+  <div>
+    <label for="">
+      Longitude:
+      <input type="text" />
+    </label>
+  </div>
+  <div>
+    <label for="">
+      Latitude:
+      <input type="text" />
+    </label>
+  </div>
+  <div id="search"></div>
+  <div id="map" style="width: 400px; height: 400px"></div>
+  <div>
+    <label for="">
+      Description:
+      <textarea name="" id="" cols="30" rows="10"></textarea>
+    </label>
+  </div>
+  <button type="submit">Crear Restaurante</button>
+</form>
+
+<script>
+  mapboxgl.accessToken =
+    "pk.eyJ1IjoiY3J1c2VkbW9zcyIsImEiOiJjanUwYWJpcTIwMGlxNDRxbnVrbzRlZ2ZwIn0.JFaXPkdL0AJ7Vbtyc8lD4A";
+
+  var geocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken
+  });
+
+  var map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/mapbox/streets-v11"
+  });
+
+  geocoder.on("result", res => {
+    console.log(res.result);
+  });
+
+  document.getElementById("search").appendChild(geocoder.onAdd(map));
+</script>
