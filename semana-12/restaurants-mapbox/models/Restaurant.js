@@ -10,7 +10,7 @@ const restSchema = new Schema(
         type: String,
         default: "Point"
       },
-      coords: [Number]
+      coordinates: [Number]
     }
   },
   { timestamps: true }
