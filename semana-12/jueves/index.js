@@ -4,12 +4,18 @@ let h2 = document.querySelector("h2");
 let specie = document.getElementById("specie");
 let status = document.getElementById("status");
 let episodes = document.getElementById("episodes");
+const base_url = "https://rickandmortyapi.com/api";
 
 function setCharacter(e) {
-  let id = e.target;
+  console.log(e.target.dataset.id);
+  let id = e.target.dataset.id;
+  axios.get(`${base_url}/character/${id}`).then(res => {
+    let char = res.data;
+    h2.innerText = char.name;
+  });
 }
 
-axios.get("https://rickandmortyapi.com/api/character").then(response => {
+axios.get(`${base_url}/character`).then(response => {
   console.log(response.data.results);
   let characters = response.data.results;
   characters.forEach(character => {
