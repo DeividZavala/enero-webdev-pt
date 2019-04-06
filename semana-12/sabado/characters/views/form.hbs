@@ -1,0 +1,43 @@
+<form action="">
+  <div>
+    <label for="">
+      Nombre:
+      <input type="text" name="name" />
+    </label>
+  </div>
+  <div>
+    <label for="">
+      Edad:
+      <input type="text" name="age" />
+    </label>
+  </div>
+  <div>
+    <label for="">
+      Cumple:
+      <input type="date" name="birthday" />
+    </label>
+  </div>
+  <div>
+    <label for="">
+      Género:
+      <select name="gender">
+        <option value="" selected disabled>Selecciona género</option>
+        <option value="male">Hombre</option>
+        <option value="female">Mujer</option>
+      </select>
+    </label>
+  </div>
+  <button type="submit">Crear morro</button>
+</form>
+
+<script>
+  document.addEventListener("input", handleChange);
+
+  let obj = {};
+
+  function handleChange(e) {
+    let field = e.target.name;
+    obj[field] = e.target.value;
+    console.log(obj);
+  }
+</script>

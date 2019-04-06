@@ -16,4 +16,12 @@ router.get("/info", (req, res) => {
     });
 });
 
+router.get("/new", (req, res) => {
+  res.render("form");
+});
+
+router.post("/new", (req, res) => {
+  console.log(req.body);
+});
+
 module.exports = router;
