@@ -27,6 +27,9 @@
       </select>
     </label>
   </div>
+
+  <p id="error" style="color: red"></p>
+
   <button type="submit">Crear morro</button>
 </form>
 
@@ -35,6 +38,7 @@
   document.addEventListener("submit", handleSubmit);
 
   let obj = {};
+  let error = document.getElementById("error");
   let base_url = "http://localhost:3000";
 
   function handleChange(e) {
@@ -50,7 +54,10 @@
         window.location.replace("/characters/");
       })
       .catch(err => {
-        console.log(err.response);
+        let e = err.response.data.errors.name.message;
+        if (e) {
+          error.innerText = e;
+        }
       });
   }
 </script>
