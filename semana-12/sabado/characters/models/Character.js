@@ -6,8 +6,8 @@ const characterSchema = new Schema(
   {
     name: {
       type: String,
-      required: "Debes mandar un nombre",
-      unique: "Ya hay uno con este nombre"
+      unique: true,
+      required: "Debes mandar un nombre"
     },
     age: Number,
     birthday: Date,
@@ -18,5 +18,7 @@ const characterSchema = new Schema(
   },
   { timestamps: true }
 );
+
+characterSchema.index({ name: 1 });
 
 module.exports = mongoose.model("Character", characterSchema);
