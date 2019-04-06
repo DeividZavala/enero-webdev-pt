@@ -48,4 +48,11 @@ router.patch("/:id/edit", (req, res) => {
     });
 });
 
+router.delete("/:id/delete", (req, res) => {
+  let { id } = req.params;
+  Characters.findByIdAndRemove(id).then(character => {
+    res.status(200).json(character);
+  });
+});
+
 module.exports = router;

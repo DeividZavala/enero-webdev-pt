@@ -4,22 +4,38 @@
 
 <script>
   let list = document.getElementById("list");
+  let base_url = "http://localhost:3000";
+  let characters = [];
+
+  function deleteItem(e) {
+    let id = e.target.dataset.id;
+    axios.delete(`${base_url}/characters/${id}/delete`).then(res => {
+      let id = res.data._id;
+      let filtered = characters.filter(item => item._id !== id);
+      drawItems(filtered);
+    });
+  }
 
   function drawItems(array) {
+    list.innerHTML = "";
     array.forEach(item => {
       let li = document.createElement("li");
       let a = document.createElement("a");
+      let btn = document.createElement("button");
+      btn.innerText = "Borrar";
+      btn.setAttribute("data-id", item._id);
+      btn.onclick = deleteItem;
       a.href = `/characters/${item._id}/edit`;
       a.innerText = item.name;
       li.appendChild(a);
+      li.appendChild(btn);
       list.appendChild(li);
     });
   }
 
   window.onload = function() {
-    let base_url = "http://localhost:3000";
     axios.get(`${base_url}/characters/info`).then(res => {
-      let characters = res.data.characters;
+      characters = res.data.characters;
       drawItems(characters);
     });
   };
