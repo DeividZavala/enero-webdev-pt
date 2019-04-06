@@ -21,7 +21,13 @@ router.get("/new", (req, res) => {
 });
 
 router.post("/new", (req, res) => {
-  console.log(req.body);
+  Characters.create(req.body)
+    .then(character => {
+      res.status(201).json(character);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;

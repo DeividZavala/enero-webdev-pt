@@ -6,7 +6,8 @@ const characterSchema = new Schema(
   {
     name: {
       type: String,
-      required: "Debes mandar un nombre"
+      required: "Debes mandar un nombre",
+      unique: "Ya hay uno con este nombre"
     },
     age: Number,
     birthday: Date,
