@@ -8,7 +8,10 @@
   function drawItems(array) {
     array.forEach(item => {
       let li = document.createElement("li");
-      li.innerText = item.name;
+      let a = document.createElement("a");
+      a.href = `/characters/${item._id}/edit`;
+      a.innerText = item.name;
+      li.appendChild(a);
       list.appendChild(li);
     });
   }

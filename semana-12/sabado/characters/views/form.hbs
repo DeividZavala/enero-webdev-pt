@@ -2,19 +2,19 @@
   <div>
     <label for="">
       Nombre:
-      <input type="text" name="name" />
+      <input type="text" name="name" value="{{ name }}" />
     </label>
   </div>
   <div>
     <label for="">
       Edad:
-      <input type="text" name="age" />
+      <input type="text" name="age" value="{{ age }}" />
     </label>
   </div>
   <div>
     <label for="">
       Cumple:
-      <input type="date" name="birthday" />
+      <input type="date" name="birthday" value="{{ birthday }}" />
     </label>
   </div>
   <div>
@@ -48,8 +48,12 @@
 
   function handleSubmit(e) {
     e.preventDefault();
-    axios
-      .post(`${base_url}/characters/new`, obj)
+
+    {{#if _id}}
+    axios.patch(`${base_url}/characters/{{_id}}/edit`, obj)
+    {{else}}
+    axios.post(`${base_url}/characters/new`, obj)
+    {{/if}}
       .then(() => {
         window.location.replace("/characters/");
       })

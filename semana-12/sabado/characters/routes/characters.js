@@ -30,4 +30,22 @@ router.post("/new", (req, res) => {
     });
 });
 
+router.get("/:id/edit", (req, res) => {
+  let { id } = req.params;
+  Characters.findById(id).then(character => {
+    res.render("form", character);
+  });
+});
+
+router.patch("/:id/edit", (req, res) => {
+  let { id } = req.params;
+  Characters.findByIdAndUpdate(id, { $set: req.body }, { new: true })
+    .then(character => {
+      res.status(200).json(character);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
 module.exports = router;
