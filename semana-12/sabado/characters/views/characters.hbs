@@ -11,8 +11,8 @@
     let id = e.target.dataset.id;
     axios.delete(`${base_url}/characters/${id}/delete`).then(res => {
       let id = res.data._id;
-      let filtered = characters.filter(item => item._id !== id);
-      drawItems(filtered);
+      characters = characters.filter(item => item._id !== id);
+      drawItems(characters);
     });
   }
 
