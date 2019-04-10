@@ -11,7 +11,7 @@ const carSchema = new Schema(
     },
     year: String,
     new: Boolean,
-    image: String
+    images: [String]
   },
   { timestamps: true }
 );
