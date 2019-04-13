@@ -10,6 +10,7 @@ const logger = require("morgan");
 const path = require("path");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
+const passport = require("./helpers/passports");
 
 mongoose
   .connect(process.env.DB, { useNewUrlParser: true })
@@ -47,6 +48,9 @@ app.use(
     })
   })
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Express View engine setup
 
