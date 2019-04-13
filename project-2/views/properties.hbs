@@ -1,0 +1,37 @@
+<section class="uk-section">
+  <div class="uk-container">
+    <div class="uk-grid-match uk-child-width-1-4 uk-grid-small" uk-grid>
+      {{#each properties as |property|}}
+      {{> propertyCard property }}
+      {{/each}}
+    </div>
+  </div>
+</section>
+
+<div class="uk-container uk-margin-medium-bottom">
+  <div id='map' style='width: 100%; height: 400px;'></div>
+</div>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  let properties = [];
+  mapboxgl.accessToken = 'pk.eyJ1IjoiY3J1c2VkbW9zcyIsImEiOiJjanUwYWJpcTIwMGlxNDRxbnVrbzRlZ2ZwIn0.JFaXPkdL0AJ7Vbtyc8lD4A';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11'
+  });
+
+  axios.get("http://localhost:3000/properties/json")
+    .then(res => {
+
+      properties = res.data.properties;
+      properties.forEach(prop => {
+
+        let popup = new mapboxgl.Popup().setText(prop.title)
+        new mapboxgl.Marker().setLngLat(prop.location.coordinates).setPopup(popup).addTo(map)
+      })
+    })
+
+
+
+</script>

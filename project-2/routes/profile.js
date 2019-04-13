@@ -3,10 +3,13 @@ const router = express.Router();
 const User = require("../models/User");
 const uploader = require("../helpers/multer");
 const helpers = require("../helpers/function");
+const Property = require("../models/Property");
 
 router.get("/", helpers.isAuth, (req, res) => {
   const { user } = req;
-  res.render("profile", { user });
+  Property.find({ owner: user._id }).then(properties => {
+    res.render("profile", { user, properties });
+  });
 });
 
 router.get("/:id/edit", helpers.isAuth, (req, res) => {

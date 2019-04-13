@@ -1,0 +1,33 @@
+<div>
+  <div class="uk-card uk-card-default">
+    <div class="uk-card-media-top">
+      <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation: fade">
+
+        <ul class="uk-slideshow-items">
+          {{#each this.images as |image|}}
+          <li>
+            <img src="{{image}}" alt="" uk-cover>
+          </li>
+          {{/each}}
+        </ul>
+
+        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous
+          uk-slideshow-item="previous"></a>
+        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
+          uk-slideshow-item="next"></a>
+
+      </div>
+    </div>
+    <div class="uk-card-body uk-padding-small">
+      <h3 class="uk-card-title">{{this.title}}</h3>
+      <p>Precios por noche: <span class="uk-label">${{this.pricePerNight}}.00</span></p>
+      <p>{{this.description}}</p>
+    </div>
+    {{#ifCond user._id this.owner}}
+    <div class="uk-card-footer">
+      <a href="/properties/{{this._id}}/edit" class="uk-button uk-button-text">Editar</a>
+    </div>
+    {{/ifCond}}
+  </div>
+
+</div>

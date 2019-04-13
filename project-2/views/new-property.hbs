@@ -2,9 +2,14 @@
   <div class="uk-container">
     <div class="uk-flex uk-flex-center uk-flex-column">
       <h2 class="uk-heading uk-flex uk-flex-center">
+        {{#if property}}
+        Edit property
+        {{else}}
         Create property
+        {{/if}}
       </h2>
-      <form action="/properties/new" class="uk-text-center" enctype="multipart/form-data" method="POST">
+      <form {{#if property}} action="/properties/{{property._id}}/edit" {{else}} action="/properties/new" {{/if}}
+        class="uk-text-center" enctype="multipart/form-data" method="POST">
 
         <div class="uk-margin">
           <div class="uk-inline">
@@ -39,6 +44,35 @@
           </div>
         </div>
 
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: cart"></span>
+            <input id="address" name="address" class="uk-input" type="text" placeholder="Enter property address"
+              value="{{property.location.address}}">
+          </div>
+        </div>
+
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: cart"></span>
+            <input id="lat" name="lat" class="uk-input" type="text" placeholder="Enter property latitude"
+              value="{{property.location.coordinates.[0]}}">
+          </div>
+        </div>
+
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: cart"></span>
+            <input id="lng" name="lng" class="uk-input" type="text" placeholder="Enter property longitud"
+              value="{{property.location.coordinates.[1]}}">
+          </div>
+        </div>
+
+        <div>
+          <div class="uk-flex uk-flex-center" id="search"></div>
+          <div id='map' style='display: inline-flex;width: 400px; height: 300px;'></div>
+        </div>
+
         {{#if err.message}}
         <div class="uk-alert-danger uk-width-1-3 uk-margin-auto" uk-alert>
           <p>{{err.message}}</p>
@@ -46,10 +80,41 @@
         {{/if}}
 
         <button class="uk-button uk-button-primary">
+          {{#if property}}
+          Edit property
+          {{else}}
           Create property
+          {{/if}}
         </button>
 
       </form>
     </div>
   </div>
 </section>
+
+<script>
+
+  const address = document.getElementById("address");
+  const lat = document.getElementById("lat");
+  const lng = document.getElementById("lng");
+
+  mapboxgl.accessToken = 'pk.eyJ1IjoiY3J1c2VkbW9zcyIsImEiOiJjanUwYWJpcTIwMGlxNDRxbnVrbzRlZ2ZwIn0.JFaXPkdL0AJ7Vbtyc8lD4A';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11'
+  });
+
+  const geocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken
+  })
+
+  document.getElementById("search").appendChild(geocoder.onAdd(map))
+
+  geocoder.on("result", (e) => {
+    console.log(e.result)
+    address.value = e.result.place_name;
+    lat.value = e.result.center[0];
+    lng.value = e.result.center[1];
+  })
+
+</script>
