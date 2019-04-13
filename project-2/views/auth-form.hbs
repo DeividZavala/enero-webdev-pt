@@ -1,11 +1,28 @@
 <section class="uk-section">
   <div class="uk-container">
     <div class="uk-flex uk-flex-center uk-flex-column">
-      <h2 class="uk-heading uk-flex uk-flex-center">{{action}}</h2>
-      <form action="" class="uk-text-center">
+      <h2 class="uk-heading uk-flex uk-flex-center">
+        {{#if action}}
+        {{action}}
+        {{else}}
+        Register
+        {{/if}}
+      </h2>
+      <form {{#if action}} action="/auth/login" {{else}} action="/auth/register" {{/if}} class="uk-text-center"
+        method="POST">
+
+        {{#unless action}}
         <div class="uk-margin">
           <div class="uk-inline">
             <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input name="name" class="uk-input" type="text" placeholder="Enter your name">
+          </div>
+        </div>
+        {{/unless}}
+
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: mail"></span>
             <input name="email" class="uk-input" type="email" placeholder="example@example.com">
           </div>
         </div>
@@ -17,7 +34,19 @@
           </div>
         </div>
 
-        <button class="uk-button uk-button-primary">{{action}}</button>
+        {{#if err.message}}
+        <div class="uk-alert-danger uk-width-1-3 uk-margin-auto" uk-alert>
+          <p>{{err.message}}</p>
+        </div>
+        {{/if}}
+
+        <button class="uk-button uk-button-primary">
+          {{#if action}}
+          {{action}}
+          {{else}}
+          Register
+          {{/if}}
+        </button>
 
       </form>
     </div>
