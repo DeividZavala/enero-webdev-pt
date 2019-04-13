@@ -2,30 +2,30 @@
   <div class="uk-container">
     <div class="uk-flex uk-flex-center uk-flex-column">
       <h2 class="uk-heading uk-flex uk-flex-center">
-        Edit Profile
+        Create property
       </h2>
-      <form action="/profile/{{user._id}}/edit" class="uk-text-center" enctype="multipart/form-data" method="POST">
+      <form action="/properties/new" class="uk-text-center" enctype="multipart/form-data" method="POST">
 
         <div class="uk-margin">
           <div class="uk-inline">
-            <span class="uk-form-icon" uk-icon="icon: user"></span>
-            <input name="name" class="uk-input" type="text" placeholder="Enter your name" value="{{user.name}}">
+            <span class="uk-form-icon" uk-icon="icon: home"></span>
+            <input name="title" class="uk-input" type="text" placeholder="Enter property title"
+              value="{{property.title}}">
           </div>
         </div>
 
         <div class="uk-margin">
           <div class="uk-inline">
-            <span class="uk-form-icon" uk-icon="icon: user"></span>
-            <input name="lastname" class="uk-input" type="text" placeholder="Enter your lastname"
-              value="{{user.lastname}}">
+            <span class="uk-form-icon" uk-icon="icon: cart"></span>
+            <input name="pricePerNight" class="uk-input" type="text" placeholder="Enter price per night"
+              value="{{property.pricePerNight}}">
           </div>
         </div>
 
         <div class="uk-margin">
           <div class="uk-inline">
-            <span class="uk-form-icon" uk-icon="icon: mail"></span>
-            <input disabled name="email" class="uk-input" type="email" placeholder="Enter your lastname"
-              value="{{user.email}}">
+            <textarea name="description" class="uk-textarea"
+              placeholder="Enter description">{{property.description}}</textarea>
           </div>
         </div>
 
@@ -33,7 +33,7 @@
           <div class="uk-inline">
             <div uk-form-custom="target: true">
               <span class="uk-form-icon" uk-icon="icon: image"></span>
-              <input name="image" type="file">
+              <input name="images" type="file" multiple>
               <input class="uk-input uk-form-width-medium" type="text" placeholder="profile picture" disabled>
             </div>
           </div>
@@ -46,7 +46,7 @@
         {{/if}}
 
         <button class="uk-button uk-button-primary">
-          Update profile
+          Create property
         </button>
 
       </form>

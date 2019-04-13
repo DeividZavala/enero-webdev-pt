@@ -4,7 +4,7 @@
       <div class="uk-width-1-3">
         <div>
           {{#if user.image}}
-          <img src="{{user.image}}" alt="{{user.name}}">
+          <img class="uk-border-circle" style="width: 200px; height: 200px" src="{{user.image}}" alt="{{user.name}}">
           {{else}}
           <img src="https://static.thenounproject.com/png/1095867-200.png" alt="profile-image">
           {{/if}}
@@ -24,7 +24,11 @@
         </div>
       </div>
       <div class="uk-width-expand">
-        <div></div>
+        <div>
+          <div>
+            <a href="/properties/new" class="uk-button uk-button-primary">Create property</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
