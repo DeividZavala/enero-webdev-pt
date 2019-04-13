@@ -1,0 +1,55 @@
+<section class="uk-section">
+  <div class="uk-container">
+    <div class="uk-flex uk-flex-center uk-flex-column">
+      <h2 class="uk-heading uk-flex uk-flex-center">
+        Edit Profile
+      </h2>
+      <form action="/profile/{{user._id}}/edit" class="uk-text-center" enctype="multipart/form-data" method="POST">
+
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input name="name" class="uk-input" type="text" placeholder="Enter your name" value="{{user.name}}">
+          </div>
+        </div>
+
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input name="lastname" class="uk-input" type="text" placeholder="Enter your lastname"
+              value="{{user.lastname}}">
+          </div>
+        </div>
+
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: mail"></span>
+            <input disabled name="email" class="uk-input" type="email" placeholder="Enter your lastname"
+              value="{{user.email}}">
+          </div>
+        </div>
+
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <div uk-form-custom="target: true">
+              <span class="uk-form-icon" uk-icon="icon: image"></span>
+              <input type="file">
+              <input class="uk-input uk-form-width-medium" type="text" placeholder="profile picture" disabled>
+            </div>
+          </div>
+        </div>
+
+        {{#if err.message}}
+        <div class="uk-alert-danger uk-width-1-3 uk-margin-auto" uk-alert>
+          <p>{{err.message}}</p>
+        </div>
+        {{/if}}
+
+        <button class="uk-button uk-button-primary">
+          Update profile
+        </button>
+
+      </form>
+    </div>
+  </div>
+</section>

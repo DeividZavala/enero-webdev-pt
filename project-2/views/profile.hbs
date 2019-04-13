@@ -1,1 +1,31 @@
-<h1>profile</h1>
+<section class="uk-section">
+  <div class="uk-container">
+    <div class="uk-grid-match" uk-grid>
+      <div class="uk-width-1-3">
+        <div>
+          {{#if user.image}}
+          <img src="{{user.image}}" alt="{{user.name}}">
+          {{else}}
+          <img src="https://static.thenounproject.com/png/1095867-200.png" alt="profile-image">
+          {{/if}}
+
+          <div class="uk-margin-medium-top">
+            <p class="uk-text-lead">{{user.name}} {{user.lastname}}</p>
+          </div>
+
+          <div class="uk-margin-medium-top">
+            <p class="uk-text-lead">{{user.email}}</p>
+          </div>
+
+          <div>
+            <a class="uk-button uk-button-default" href="/profile/{{user._id}}/edit">editar perfil</a>
+          </div>
+
+        </div>
+      </div>
+      <div class="uk-width-expand">
+        <div></div>
+      </div>
+    </div>
+  </div>
+</section>

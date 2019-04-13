@@ -25,8 +25,13 @@
 
     <div class="uk-navbar-right">
       <ul class="uk-navbar-nav">
+        {{#unless user}}
         <li><a href="/auth/login">Login</a></li>
         <li><a href="/auth/register">Register</a></li>
+        {{else}}
+        <li><a href="/profile">{{user.email}}</a></li>
+        <li><a href="/auth/logout">Logout</a></li>
+        {{/unless}}
       </ul>
     </div>
   </nav>
