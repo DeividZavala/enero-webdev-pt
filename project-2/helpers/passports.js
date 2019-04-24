@@ -11,7 +11,6 @@ passport.deserializeUser(User.deserializeUser());
 
 function facebookCallback(accessToken, refreshToken, profile, cb) {
   User.findOne({ facebookId: profile.id }).then(user => {
-    console.log(user);
     if (user) {
       return cb(null, user);
     }
@@ -38,7 +37,6 @@ function facebookCallback(accessToken, refreshToken, profile, cb) {
 
         User.create({ facebookId, displayName, name, lastname, email }).then(
           newUser => {
-            console.log("perro", newUser);
             return cb(null, newUser);
           }
         );
