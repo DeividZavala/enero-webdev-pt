@@ -1,54 +1,66 @@
 <section class="uk-section">
   <div class="uk-container">
-    <div class="uk-flex uk-flex-center uk-flex-column">
-      <h2 class="uk-heading uk-flex uk-flex-center">
-        {{#if action}}
-        {{action}}
-        {{else}}
-        Register
-        {{/if}}
-      </h2>
-      <form {{#if action}} action="/auth/login" {{else}} action="/auth/register" {{/if}} class="uk-text-center"
-        method="POST">
-
-        {{#unless action}}
-        <div class="uk-margin">
-          <div class="uk-inline">
-            <span class="uk-form-icon" uk-icon="icon: user"></span>
-            <input name="name" class="uk-input" type="text" placeholder="Enter your name">
-          </div>
-        </div>
-        {{/unless}}
-
-        <div class="uk-margin">
-          <div class="uk-inline">
-            <span class="uk-form-icon" uk-icon="icon: mail"></span>
-            <input name="email" class="uk-input" type="email" placeholder="example@example.com">
-          </div>
-        </div>
-
-        <div class="uk-margin">
-          <div class="uk-inline">
-            <span class="uk-form-icon" uk-icon="icon: lock"></span>
-            <input name="password" class="uk-input" type="password" placeholder="Enter your password">
-          </div>
-        </div>
-
-        {{#if err.message}}
-        <div class="uk-alert-danger uk-width-1-3 uk-margin-auto" uk-alert>
-          <p>{{err.message}}</p>
-        </div>
-        {{/if}}
-
-        <button class="uk-button uk-button-primary">
+    <div class="uk-flex uk-flex-center">
+      <div class="uk-flex uk-flex-center uk-flex-column uk-width-1-3">
+        <h2 class="uk-heading uk-flex uk-flex-center">
           {{#if action}}
           {{action}}
           {{else}}
           Register
           {{/if}}
-        </button>
+        </h2>
+        <form {{#if action}} action="/auth/login" {{else}} action="/auth/register" {{/if}} class="uk-text-center"
+          method="POST">
 
-      </form>
+          {{#unless action}}
+          <div class="uk-margin">
+            <div class="uk-inline">
+              <span class="uk-form-icon" uk-icon="icon: user"></span>
+              <input name="name" class="uk-input" type="text" placeholder="Enter your name">
+            </div>
+          </div>
+          {{/unless}}
+
+          <div class="uk-margin">
+            <div class="uk-inline">
+              <span class="uk-form-icon" uk-icon="icon: mail"></span>
+              <input name="email" class="uk-input" type="email" placeholder="example@example.com">
+            </div>
+          </div>
+
+          <div class="uk-margin">
+            <div class="uk-inline">
+              <span class="uk-form-icon" uk-icon="icon: lock"></span>
+              <input name="password" class="uk-input" type="password" placeholder="Enter your password">
+            </div>
+          </div>
+
+          {{#if err.message}}
+          <div class="uk-alert-danger uk-width-1-3 uk-margin-auto" uk-alert>
+            <p>{{err.message}}</p>
+          </div>
+          {{/if}}
+
+          <button class="uk-button uk-button-primary">
+            {{#if action}}
+            {{action}}
+            {{else}}
+            Register
+            {{/if}}
+          </button>
+
+        </form>
+
+        {{#if action}}
+        <hr class="uk-divider-icon">
+
+        <div class="uk-flex uk-flex-center">
+          <a href="/auth/facebook" class="uk-button facebook uk-width-3-4"> <span uk-icon="icon: facebook"></span>
+            facebook</a>
+        </div>
+        {{/if}}
+      </div>
     </div>
+
   </div>
 </section>

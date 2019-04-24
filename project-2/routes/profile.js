@@ -30,8 +30,8 @@ router.post(
   (req, res) => {
     const { id: _id } = req.params;
     const { email } = req.user;
-    const { url: image } = req.file;
-    const user = { ...req.body, image };
+    const image = req.file ? req.file.url : undefined;
+    const user = image ? { ...req.body, image } : req.body;
     User.findOneAndUpdate({ _id, email }, { $set: user })
       .then(() => {
         res.redirect("/profile");

@@ -23,7 +23,12 @@ const userSchema = new Schema(
     },
     image: {
       type: String
-    }
+    },
+    facebookId: {
+      type: String,
+      unique: true
+    },
+    displayName: String
   },
   { timestamps: true }
 );

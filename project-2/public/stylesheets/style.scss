@@ -1,4 +1,5 @@
 $primary: #00b7ff;
+$facebook: #3b5998;
 
 * {
   margin: 0;
@@ -10,5 +11,16 @@ body {
 }
 
 a {
+  &.facebook {
+    text-decoration: none;
+    &:hover {
+      color: white;
+    }
+  }
   color: $primary;
+}
+
+.facebook {
+  background-color: $facebook;
+  color: white;
 }

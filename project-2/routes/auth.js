@@ -23,6 +23,7 @@ router.post(
 
 router.post("/register", (req, res) => {
   const { password } = req.body;
+  console.log(req.body);
 
   User.register(req.body, password)
     .then(user => {
@@ -42,6 +43,23 @@ router.post("/register", (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
+
+// facebook auth
+
+router.get("/facebook", passport.authenticate("facebook"));
+
+router.get(
+  "/facebook/callback",
+  passport.authenticate("facebook", {
+    failureRedirect: "/login",
+    successRedirect: "/profile"
+  })
+);
+
+router.get("/logout", function(req, res) {
   req.logout();
   res.redirect("/");
 });
