@@ -1,4 +1,6 @@
 const nodemailer = require("nodemailer");
+const hbs = require("hbs");
+const fs = require("fs");
 
 const transport = nodemailer.createTransport({
   service: "SendGrid",
@@ -16,13 +18,21 @@ transport.verify(function(error, success) {
   }
 });
 
+const generateHTML = (filename, options) => {
+  const html = hbs.compile(
+    fs.readFileSync((__dirname, `./views/mails/${filename}.hbs`), "utf-8")
+  );
+  return html(options);
+};
+
 exports.send = options => {
+  const html = generateHTML(options.filename, options);
   const mailOptions = {
-    subject: options.subject,
+    from: "🎃Ironbnb Team 🎃 <noreply@ironbnb.com>",
     to: options.email,
-    from: `😡 ${options.subject} 😡<noreply@mijo.com>`,
-    text: options.message,
-    html: `<h1>${options.message}</h1>`
+    subject: options.subject,
+    message: options.message,
+    html
   };
   return transport.sendMail(mailOptions);
 };

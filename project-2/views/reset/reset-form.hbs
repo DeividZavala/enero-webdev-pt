@@ -1,0 +1,33 @@
+<div class="view-container uk-section uk-flex">
+  <div class="uk-container">
+    <div class="uk-card uk-card-body uk-box-shadow-large uk-text-center">
+      <form method="POST">
+
+        <h2>Recover password</h2>
+
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: lock"></span>
+            <input class="uk-input" type="password" placeholder="password" name="password">
+          </div>
+        </div>
+
+        <div class="uk-margin">
+          <div class="uk-inline">
+            <span class="uk-form-icon uk-form-icon" uk-icon="icon: check"></span>
+            <input class="uk-input" type="password" placeholder="confirm password" name="confirm-password">
+          </div>
+        </div>
+
+        {{#if err}}
+        <div class="uk-alert-danger uk-margin-auto" uk-alert>
+          <p>{{err}}</p>
+        </div>
+        {{/if}}
+
+        <button class="uk-button uk-button-primary" type="submit">Update password</button>
+
+      </form>
+    </div>
+  </div>
+</div>
