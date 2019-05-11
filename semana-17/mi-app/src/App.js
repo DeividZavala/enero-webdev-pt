@@ -11,7 +11,7 @@ class App extends Component {
   state = {
     todo: {
       value: "",
-      priority: ""
+      priority: "low"
     },
     todos:[]
   }
@@ -20,10 +20,22 @@ class App extends Component {
     const {todo} = this.state;
     const field = e.target.name;
     todo[field] = e.target.value;
-    this.setState({todo}, () => console.log(this.state));
+    this.setState({todo});
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    let {todos, todo} = this.state;
+    todos.push(todo);
+    todo = {
+      value: "",
+      priority: "low"
+    };
+    this.setState({todos, todo}, () => console.log(this.state));
   }
 
   render(){
+    const {todo, todos} = this.state;
     return (
       <div className="App">
         <h1>ToDos</h1>
@@ -31,10 +43,16 @@ class App extends Component {
           <div className="uk-container">
             <div className="uk-grid-match uk-child-width-1-2" uk-grid="true">
             <div>
-              <TodoForm handleChange={this.handleChange} />
+              <TodoForm
+                {...todo}
+                handleSubmit={this.handleSubmit}
+                handleChange={this.handleChange} 
+              />
             </div>
             <div>
-              <TodoList />
+              <TodoList
+                todos={todos}
+              />
             </div>
             </div>
           </div>
