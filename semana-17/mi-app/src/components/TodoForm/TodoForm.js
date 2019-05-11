@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TodoForm = () => (
+const TodoForm = ({handleChange}) => (
     <div>
         <h3>Agrega un ToDo</h3>
         <form className="uk-text-left">
@@ -8,12 +8,18 @@ const TodoForm = () => (
 
                 <div className="uk-margin">
                     <label>Tarea:</label>
-                    <input className="uk-input" type="text" placeholder="todo" />
+                    <input
+                        onChange={handleChange}
+                        className="uk-input" 
+                        type="text"
+                        name="value"
+                        placeholder="todo" 
+                    />
                 </div>
 
                 <div className="uk-margin">
                     <label>Prioridad:</label>
-                    <select className="uk-select" defaultValue="">
+                    <select name="priority" onChange={handleChange} className="uk-select" defaultValue="">
                         <option value="" disabled>Selecciona la prioridad</option>
                         <option>Baja</option>
                         <option>Media</option>

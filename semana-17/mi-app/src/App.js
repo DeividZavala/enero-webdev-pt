@@ -7,6 +7,22 @@ import TodoList from './components/TodoList/TodoList';
 import './App.css';
 
 class App extends Component {
+  
+  state = {
+    todo: {
+      value: "",
+      priority: ""
+    },
+    todos:[]
+  }
+
+  handleChange = e => {
+    const {todo} = this.state;
+    const field = e.target.name;
+    todo[field] = e.target.value;
+    this.setState({todo}, () => console.log(this.state));
+  }
+
   render(){
     return (
       <div className="App">
@@ -15,7 +31,7 @@ class App extends Component {
           <div className="uk-container">
             <div className="uk-grid-match uk-child-width-1-2" uk-grid="true">
             <div>
-              <TodoForm />
+              <TodoForm handleChange={this.handleChange} />
             </div>
             <div>
               <TodoList />
