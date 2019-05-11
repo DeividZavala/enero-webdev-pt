@@ -3,18 +3,18 @@ import React from 'react';
 const TodoForm = () => (
     <div>
         <h3>Agrega un ToDo</h3>
-        <form>
-            <fieldset class="uk-fieldset">
+        <form className="uk-text-left">
+            <fieldset className="uk-fieldset">
 
-                <div class="uk-margin">
+                <div className="uk-margin">
                     <label>Tarea:</label>
-                    <input class="uk-input" type="text" placeholder="todo" />
+                    <input className="uk-input" type="text" placeholder="todo" />
                 </div>
 
-                <div class="uk-margin">
+                <div className="uk-margin">
                     <label>Prioridad:</label>
-                    <select class="uk-select">
-                        <option>Selecciona la prioridad</option>
+                    <select className="uk-select" defaultValue="">
+                        <option value="" disabled>Selecciona la prioridad</option>
                         <option>Baja</option>
                         <option>Media</option>
                         <option>Alta</option>
@@ -22,6 +22,7 @@ const TodoForm = () => (
                 </div>
 
             </fieldset>
+            <button className="uk-button uk-button-primary">Agregar</button>
         </form>
     </div>
 );
