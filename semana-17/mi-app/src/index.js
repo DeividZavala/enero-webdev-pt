@@ -11,7 +11,10 @@ import 'uikit/dist/css/uikit.min.css';
 // loads the Icon plugin
 UIkit.use(Icons);
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<div>
+    <App />
+    <App />
+</div>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
