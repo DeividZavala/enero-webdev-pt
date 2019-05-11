@@ -9,6 +9,7 @@ const TodoListItem = ({value, priority}) => (
         <span>{value}</span>
         <span className={`uk-label uk-label-${getModifier(priority)}`}
              >{priority}</span>
+        <button type="button" uk-close="true"></button>
     </div>
 );
 

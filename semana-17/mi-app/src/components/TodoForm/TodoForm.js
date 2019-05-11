@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TodoForm = ({handleChange, handleSubmit, value, priority}) => (
+const TodoForm = ({handleChange, handleSubmit, value, priority, error}) => (
     <div>
         <h3>Agrega un ToDo</h3>
         <form className="uk-text-left" onSubmit={handleSubmit}>
@@ -10,7 +10,7 @@ const TodoForm = ({handleChange, handleSubmit, value, priority}) => (
                     <label>Tarea:</label>
                     <input
                         onChange={handleChange}
-                        className="uk-input" 
+                        className={`uk-input ${error ? 'uk-form-danger' : '' }`} 
                         type="text"
                         name="value"
                         value={value}
@@ -36,6 +36,13 @@ const TodoForm = ({handleChange, handleSubmit, value, priority}) => (
             </fieldset>
             <button className="uk-button uk-button-primary">Agregar</button>
         </form>
+
+        {error && (
+            <div className="uk-alert-danger uk-margin-small-top" uk-alert="true">
+                <p>{error}</p>
+            </div>
+        )}
+
     </div>
 );
 

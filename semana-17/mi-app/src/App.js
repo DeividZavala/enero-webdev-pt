@@ -26,16 +26,17 @@ class App extends Component {
   handleSubmit = e => {
     e.preventDefault();
     let {todos, todo} = this.state;
+    if(!todo.value.length) return this.setState({error: "Debes agregar una tarea"})
     todos.push(todo);
     todo = {
       value: "",
       priority: "low"
     };
-    this.setState({todos, todo}, () => console.log(this.state));
+    this.setState({todos, todo, error: undefined}, () => console.log(this.state));
   }
 
   render(){
-    const {todo, todos} = this.state;
+    const {todo, todos, error} = this.state;
     return (
       <div className="App">
         <h1>ToDos</h1>
@@ -45,6 +46,7 @@ class App extends Component {
             <div>
               <TodoForm
                 {...todo}
+                error={error}
                 handleSubmit={this.handleSubmit}
                 handleChange={this.handleChange} 
               />
