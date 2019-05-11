@@ -35,6 +35,12 @@ class App extends Component {
     this.setState({todos, todo, error: undefined}, () => console.log(this.state));
   }
 
+  deleteItem = (index) => {
+    const {todos} = this.state;
+    todos.splice(index, 1);
+    this.setState({todos});
+  }
+
   render(){
     const {todo, todos, error} = this.state;
     return (
@@ -54,6 +60,7 @@ class App extends Component {
             <div>
               <TodoList
                 todos={todos}
+                deleteItem={this.deleteItem}
               />
             </div>
             </div>
