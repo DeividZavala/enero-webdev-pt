@@ -1,7 +1,9 @@
 import React from 'react';
 
-const NewProduct = () => (
-    <div>
+const NewProduct = (props) => {
+    console.log(props)
+    return (
+        <div>
         <form>
             <div>
                 <label htmlFor="">Nombre del producto</label>
@@ -22,6 +24,7 @@ const NewProduct = () => (
             <button>Picale mijo</button>
         </form>
     </div>
-);
+    )
+}
 
 export default NewProduct;

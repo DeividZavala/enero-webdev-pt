@@ -15,14 +15,22 @@ class App extends Component {
     products: []
   }
 
+  handleChange = e => {
+    console.log(e.target.value)
+  }
+
   render(){
+    const {product} = this.state;
     return (
       <div className="App">
         <nav>
           <Link to="/">Home</Link>
           <Link to="/new-product">New product</Link>
         </nav>
-        <Router/>
+        <Router
+          product={product}
+          handleChange={this.handleChange}
+        />
       </div>
     );
   }
