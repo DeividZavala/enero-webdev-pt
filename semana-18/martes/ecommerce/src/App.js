@@ -16,20 +16,43 @@ class App extends Component {
   }
 
   handleChange = e => {
-    console.log(e.target.value)
+    const {product} = this.state;
+    let field = e.target.name;
+    if(field === "images") {
+      let images =  e.target.value.split(',')
+      product[field] = images
+      return this.setState({product});
+    }
+    product[field] = e.target.value;
+    this.setState({product});
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    let {products, product} = this.state;
+    products.push(product);
+    product = {
+      name: "",
+      price: 0,
+      description: "",
+      images: []
+    }
+    this.setState({products, product})
   }
 
   render(){
-    const {product} = this.state;
+    const {product, products} = this.state;
     return (
       <div className="App">
         <nav>
           <Link to="/">Home</Link>
           <Link to="/new-product">New product</Link>
+          <p>Productos: {products.length}</p>
         </nav>
         <Router
           product={product}
           handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
         />
       </div>
     );
