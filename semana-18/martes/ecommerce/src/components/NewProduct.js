@@ -18,7 +18,7 @@ const NewProduct = ({handleChange, name, images, price, description, handleSubmi
         <div>
             <label htmlFor="">Imagenes del producto</label>
             <small>(Separa las images con comas)</small>
-            <textarea onChange={handleChange} name="images" defaultValue={images}></textarea>
+            <textarea onChange={handleChange} name="images" value={images.join(',')}></textarea>
         </div>
         <button>Picale mijo</button>
     </form>

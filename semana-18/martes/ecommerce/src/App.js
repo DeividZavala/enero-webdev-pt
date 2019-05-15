@@ -51,6 +51,7 @@ class App extends Component {
         </nav>
         <Router
           product={product}
+          products={products}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
