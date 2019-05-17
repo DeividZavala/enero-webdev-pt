@@ -2,26 +2,39 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import Countdown from '../common/Countdown';
 import UIkit from 'uikit';
+import CardComponent from '../common/CardComponent';
 
 class HomeComponentContainer extends Component{
 
     constructor(props){
         super(props)
         this.state = {
-            characters: []
+            characters: [],
+            meta: {}
         };
     }
 
-    componentWillMount(){
-
-    }
+    componentWillMount(){}
 
     render(){
+        const { characters } = this.state;
         return (
             <div>
 
-                
-                <Countdown/>
+                <div className="uk-section">
+                    <div className="uk-container">
+                        <div className="uk-grid-match uk-child-width-1-4" uk-grid="true">
+                            {characters.map(
+                                (character, index) => 
+                                    <CardComponent key={index} {...character} />
+                                )
+                            }
+                        </div>
+                        <div className="uk-margin uk-flex uk-flex-center">
+                            <Countdown/>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
@@ -30,7 +43,8 @@ class HomeComponentContainer extends Component{
 
         axios.get("https://rickandmortyapi.com/api/character")
         .then(res => {
-            console.log(res.data);
+            const { info:meta, results:characters} = res.data;
+            this.setState({meta, characters});
         })
 
 
