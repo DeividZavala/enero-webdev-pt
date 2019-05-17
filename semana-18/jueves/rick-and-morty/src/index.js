@@ -10,8 +10,7 @@ import Icons from 'uikit/dist/js/uikit-icons';
 
 import 'uikit/dist/css/uikit.min.css';
 
-import moment from 'moment';
-moment.locale("es");
+import 'moment/locale/es';
 
 // loads the Icon plugin
 UIkit.use(Icons);

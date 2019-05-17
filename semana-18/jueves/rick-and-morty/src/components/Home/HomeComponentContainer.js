@@ -23,7 +23,7 @@ class HomeComponentContainer extends Component{
 
                 <div className="uk-section">
                     <div className="uk-container">
-                        <div className="uk-grid-match uk-child-width-1-4" uk-grid="true">
+                        <div className="uk-grid-match uk-grid-small uk-child-width-1-4" uk-grid="true">
                             {characters.map(
                                 (character, index) => 
                                     <CardComponent key={index} {...character} />

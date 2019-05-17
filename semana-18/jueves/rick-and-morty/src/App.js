@@ -1,5 +1,6 @@
 import React from 'react';
 import Router from './Router';
+import {Link} from 'react-router-dom';
 import './App.css';
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
           <div className="uk-navbar-left">
 
               <ul className="uk-navbar-nav">
-                  <li className="uk-active"><a href="#">Active</a></li>
+                  <li className="uk-active"><Link to="/">Home</Link></li>
                   <li>
                       <a href="#">Parent</a>
                       <div className="uk-navbar-dropdown">
