@@ -35,6 +35,7 @@ router.get("/:id", (req,res) => {
 
 // create todo
 router.post("/", (req, res) => {
+  console.log(req.body);
 
   Todo.create(req.body)
   .then(todo => {

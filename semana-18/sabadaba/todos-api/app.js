@@ -8,7 +8,7 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-
+const cors         = require("cors");
 
 mongoose
   .connect(process.env.DB, {useNewUrlParser: true})
@@ -37,6 +37,11 @@ app.use(require('node-sass-middleware')({
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
+
+
+app.use(cors({
+  origin: ["http://localhost:3001"]
+}))
       
 
 app.set('views', path.join(__dirname, 'views'));
