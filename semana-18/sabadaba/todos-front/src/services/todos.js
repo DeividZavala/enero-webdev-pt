@@ -14,3 +14,9 @@ export const createTodo = todo => {
     .then(res => res.data.todo)
     .catch(err => err)
 };
+
+export const deleteTodo = id => {
+    return axios.delete(`${base_url}/todos/${id}`)
+    .then(res => res.data.todo)
+    .catch(err => err)
+}

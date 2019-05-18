@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import UIkit from 'uikit';
 
 // services 
-import {createTodo, getTodos} from './services/todos';
+import {createTodo, getTodos, deleteTodo} from './services/todos';
 
 // components
 import TodoForm from './components/Todo/TodoForm';
@@ -60,10 +60,21 @@ class App extends Component {
     })
   }
 
-  deleteItem = (index) => {
-    const {todos} = this.state;
-    todos.splice(index, 1);
-    this.setState({todos});
+  deleteItem = id => {
+    let {todos} = this.state;
+    deleteTodo(id)
+    .then(todo => {
+
+      UIkit.notification({
+        message: `<span uk-icon="icon:check"></span> ${todo._id} eliminado con exito`,
+        status: "success",
+        pos: "top-right"
+      })
+
+      todos = todos.filter(todo => todo._id !== id);
+      this.setState({todos});
+
+    })
   }
 
   render(){
