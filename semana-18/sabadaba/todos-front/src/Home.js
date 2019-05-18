@@ -20,6 +20,12 @@ class Home extends Component {
     todos:[]
   }
 
+  componentWillMount(){
+    if(!this.props.user._id){
+      this.props.history.push("/login");
+    }
+  }
+
   componentDidMount(){
     getTodos()
     .then(todos => {
