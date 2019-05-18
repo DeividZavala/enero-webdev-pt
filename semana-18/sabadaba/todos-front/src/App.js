@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import UIkit from 'uikit';
 
 // services 
-import {createTodo, getTodos, deleteTodo} from './services/todos';
+import {createTodo, getTodos, deleteTodo, editTodo} from './services/todos';
 
 // components
 import TodoForm from './components/Todo/TodoForm';
@@ -23,6 +23,7 @@ class App extends Component {
   componentDidMount(){
     getTodos()
     .then(todos => {
+      todos.reverse();
       this.setState({todos})
     })
     .catch(error => {
@@ -34,6 +35,10 @@ class App extends Component {
     })
   }
 
+  setTodo = todo => {
+    this.setState({todo});
+  }
+
   handleChange = e => {
     const {todo} = this.state;
     const field = e.target.name;
@@ -43,12 +48,35 @@ class App extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    let {todos, todo} = this.state;
+    const {todo, todos} = this.state;
     if(!todo.body.length) return this.setState({error: "Debes agregar una tarea"})
+    const index = todos.findIndex(t => t._id === todo._id);
+    todo._id ? this.onEditTodo(index) : this.onCreateTodo();
+  }
+
+  onEditTodo = (index) => {
+    let {todos, todo} = this.state;
+    editTodo(todo)
+      .then(todo => {
+        console.log(todo);
+        todos.splice(index, 1, todo);
+        todo = {
+          body: "",
+          priority: "low"
+        };
+        this.setState({todos, todo, error: undefined});
+      })
+      .catch(error => {
+        this.setState({error: error.message})
+      })
+  }
+
+  onCreateTodo = () => {
+    let {todos, todo} = this.state;
     createTodo(todo)
     .then(todo => {
       console.log(todo);
-      todos.push(todo);
+      todos.unshift(todo);
       todo = {
         body: "",
         priority: "low"
@@ -96,6 +124,7 @@ class App extends Component {
             <div>
               <TodoList
                 todos={todos}
+                setTodo={this.setTodo}
                 deleteItem={this.deleteItem}
               />
             </div>

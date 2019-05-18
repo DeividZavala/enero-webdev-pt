@@ -5,7 +5,7 @@ const getModifier = priority => priority === 'low' ?
 'success' : priority === 'medium' ?
  'warning' : 'danger'
 
-const TodoListItem = ({body, priority, deleteItem, expiration_date}) => (
+const TodoListItem = ({body, priority, deleteItem, expiration_date, setTodo}) => (
     <div className="uk-margin-small-bottom uk-card uk-card-default uk-padding-small">
         <div className="uk-card-body uk-flex uk-flex-middle uk-flex-around">
             <span>{body}</span>
@@ -18,15 +18,15 @@ const TodoListItem = ({body, priority, deleteItem, expiration_date}) => (
                 </button>
                 <div uk-dropdown="true">
                     <ul className="uk-nav uk-dropdown-nav">
-                        <li><a href="#">Editar <span uk-icon="icon: pencil"></span></a></li>
+                        <li onClick={setTodo} ><a href="#">Editar <span uk-icon="icon: pencil"></span></a></li>
                         <li className="uk-nav-divider"></li>
                         <li onClick={deleteItem}><a href="#">Eliminar <span uk-icon="icon: trash"></span></a></li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="uk-card-footer">
-            <a href="#" class="uk-button uk-button-text">Vence: {moment(expiration_date).fromNow()}</a>
+        <div className="uk-card-footer">
+            <a href="#" className="uk-button uk-button-text">Vence {moment(expiration_date).fromNow()}</a>
         </div>
     </div>
 );

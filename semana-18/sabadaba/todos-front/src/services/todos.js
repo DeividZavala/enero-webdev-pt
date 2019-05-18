@@ -20,3 +20,9 @@ export const deleteTodo = id => {
     .then(res => res.data.todo)
     .catch(err => err)
 }
+
+export const editTodo = todo => {
+    return axios.patch(`${base_url}/todos/${todo._id}`, todo)
+    .then(res => res.data.todo)
+    .catch(err => err)
+}
