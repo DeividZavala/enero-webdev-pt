@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
+import UIkit from 'uikit';
 
 // services 
-import {createTodo} from './services/todos';
+import {createTodo, getTodos} from './services/todos';
 
 // components
 import TodoForm from './components/Todo/TodoForm';
@@ -17,6 +18,20 @@ class App extends Component {
       priority: "low"
     },
     todos:[]
+  }
+
+  componentDidMount(){
+    getTodos()
+    .then(todos => {
+      this.setState({todos})
+    })
+    .catch(error => {
+      UIkit.notification({
+        message: `<span uk-icon="icon:close"></span> ${error.message}`,
+        status: "danger",
+        position: "top-left"
+      })
+    })
   }
 
   handleChange = e => {
