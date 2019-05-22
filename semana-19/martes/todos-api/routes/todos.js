@@ -43,8 +43,6 @@ router.post(
   (req, res) => {
     const { _id: author } = req.user;
 
-    console.log(req.file);
-
     Todo.create({ ...req.body, author })
       .then(todo => {
         res.status(201).json({ todo });

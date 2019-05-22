@@ -7,7 +7,6 @@ const User = require("../models/User");
 router.post("/register", (req, res) => {
   const salt = bcrypt.genSaltSync(10);
   const hasshedPassword = bcrypt.hashSync(req.body.password, salt);
-  console.log(req.body);
   User.create({ ...req.body, password: hasshedPassword })
     .then(user => {
       jwt.sign(
