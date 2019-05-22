@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Todo = require("../models/Todo");
 const authUtils = require("../helpers/auth");
+const uploader = require("../helpers/multer");
 
 // get todos
 router.get("/", authUtils.verifyToken, (req, res) => {
@@ -35,20 +36,27 @@ router.get("/:id", authUtils.verifyToken, (req, res) => {
 });
 
 // create todo
-router.post("/", authUtils.verifyToken, (req, res) => {
-  const { _id: author } = req.user;
+router.post(
+  "/",
+  authUtils.verifyToken,
+  uploader.single("image"),
+  (req, res) => {
+    const { _id: author } = req.user;
 
-  Todo.create({ ...req.body, author })
-    .then(todo => {
-      res.status(201).json({ todo });
-    })
-    .catch(error => {
-      res.status(500).json({
-        error,
-        message: "No se puedo crear el todo",
+    console.log(req.file);
+
+    Todo.create({ ...req.body, author })
+      .then(todo => {
+        res.status(201).json({ todo });
+      })
+      .catch(error => {
+        res.status(500).json({
+          error,
+          message: "No se puedo crear el todo",
+        });
       });
-    });
-});
+  }
+);
 
 // update todo
 router.patch("/:id", authUtils.verifyToken, (req, res) => {

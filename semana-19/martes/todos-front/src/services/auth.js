@@ -5,7 +5,9 @@ axios.defaults.headers = {
 }
 
 const isProduction = process.env.NODE_ENV === 'production'
-const base_url = isProduction ? 'url_de_heroku' : 'http://localhost:3000/api'
+const base_url = !isProduction
+  ? 'https://ironhack-api.localtunnel.me'
+  : 'http://localhost:3000/api'
 
 export const login = auth => {
   return axios
