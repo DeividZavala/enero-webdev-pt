@@ -5,8 +5,8 @@ const authUtils = require("../helpers/auth");
 
 // get todos
 router.get("/", authUtils.verifyToken, (req, res) => {
-  console.log(req.user);
-  Todo.find()
+  const { _id } = req.user;
+  Todo.find({ author: _id })
     .then(todos => {
       res.status(200).json({ todos });
     })
@@ -19,7 +19,7 @@ router.get("/", authUtils.verifyToken, (req, res) => {
 });
 
 // get todo
-router.get("/:id", (req, res) => {
+router.get("/:id", authUtils.verifyToken, (req, res) => {
   const { id } = req.params;
 
   Todo.findById(id)
@@ -35,10 +35,10 @@ router.get("/:id", (req, res) => {
 });
 
 // create todo
-router.post("/", (req, res) => {
-  console.log(req.body);
+router.post("/", authUtils.verifyToken, (req, res) => {
+  const { _id: author } = req.user;
 
-  Todo.create(req.body)
+  Todo.create({ ...req.body, author })
     .then(todo => {
       res.status(201).json({ todo });
     })
@@ -51,7 +51,7 @@ router.post("/", (req, res) => {
 });
 
 // update todo
-router.patch("/:id", (req, res) => {
+router.patch("/:id", authUtils.verifyToken, (req, res) => {
   const { id } = req.params;
 
   Todo.findByIdAndUpdate(id, { $set: req.body }, { new: true })
@@ -67,7 +67,7 @@ router.patch("/:id", (req, res) => {
 });
 
 // delete todo
-router.delete("/:id", (req, res) => {
+router.delete("/:id", authUtils.verifyToken, (req, res) => {
   const { id } = req.params;
 
   Todo.findByIdAndDelete(id)
