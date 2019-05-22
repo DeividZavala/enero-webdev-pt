@@ -16,3 +16,16 @@ exports.verifyToken = (req, res, next) => {
     });
   });
 };
+
+exports.hasPermission = checkRoles = roles => {
+  return (req, res, next) => {
+    if (req.user && roles.includes(req.user.role)) {
+      return next();
+    } else {
+      res.status(403).json({
+        error: {},
+        message: "No tienes los permisos necesarios",
+      });
+    }
+  };
+};

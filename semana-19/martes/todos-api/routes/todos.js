@@ -53,15 +53,16 @@ router.post("/", authUtils.verifyToken, (req, res) => {
 // update todo
 router.patch("/:id", authUtils.verifyToken, (req, res) => {
   const { id } = req.params;
+  const { _id: author } = req.user;
 
-  Todo.findByIdAndUpdate(id, { $set: req.body }, { new: true })
+  Todo.findOneAndUpdate({ _id: id, author }, { $set: req.body }, { new: true })
     .then(todo => {
       res.status(200).json({ todo });
     })
     .catch(error => {
       res.status(500).json({
         error,
-        message: "Error al editar el todo",
+        message: "No puedes editar por que seguro no es tu todo",
       });
     });
 });
@@ -69,8 +70,9 @@ router.patch("/:id", authUtils.verifyToken, (req, res) => {
 // delete todo
 router.delete("/:id", authUtils.verifyToken, (req, res) => {
   const { id } = req.params;
+  const { _id: author } = req.user;
 
-  Todo.findByIdAndDelete(id)
+  Todo.findOneAndRemove({ _id: id, author })
     .then(todo => {
       res.status(200).json({ todo });
     })
