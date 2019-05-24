@@ -1,11 +1,7 @@
 import axios from 'axios'
 
-axios.defaults.headers = {
-  Authorization: localStorage.getItem('TOKEN')
-}
-
 const isProduction = process.env.NODE_ENV === 'production'
-const base_url = !isProduction
+const base_url = isProduction
   ? 'https://ironhack-api.localtunnel.me'
   : 'http://localhost:3000/api'
 

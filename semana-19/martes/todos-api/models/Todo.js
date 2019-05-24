@@ -16,6 +16,9 @@ const todoSchema = new Schema(
       type: Date,
       default: Date.now() + 86400000,
     },
+    images: {
+      type: [String],
+    },
     priority: {
       type: String,
       enum: ["low", "medium", "high"],

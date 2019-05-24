@@ -39,11 +39,13 @@ router.get("/:id", authUtils.verifyToken, (req, res) => {
 router.post(
   "/",
   authUtils.verifyToken,
-  uploader.single("image"),
+  uploader.array("images"),
   (req, res) => {
     const { _id: author } = req.user;
 
-    Todo.create({ ...req.body, author })
+    const images = req.files.map(file => file.secure_url);
+
+    Todo.create({ ...req.body, author, images })
       .then(todo => {
         res.status(201).json({ todo });
       })
