@@ -143,7 +143,7 @@ class Home extends Component {
     const { todo, todos, error } = this.state
     return (
       <div className=''>
-        <h1>ToDos</h1>
+        <h1>Todos</h1>
         <div className='uk-section'>
           <div className='uk-container'>
             <div className='uk-grid-match uk-child-width-1-2' uk-grid='true'>

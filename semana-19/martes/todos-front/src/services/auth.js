@@ -1,8 +1,12 @@
 import axios from 'axios'
 
+axios.defaults.headers = {
+  'Content-Type': 'application/json'
+}
+
 const isProduction = process.env.NODE_ENV === 'production'
 const base_url = isProduction
-  ? 'https://ironhack-api.localtunnel.me'
+  ? 'https://proyecto-m3.herokuapp.com/api'
   : 'http://localhost:3000/api'
 
 export const login = auth => {
