@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
-    "bcrypt": "^3.0.5"
+    "bcrypt": "^5.0.0"
   },
   "devDependencies": {},
   "scripts": {
