@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "hbs": "^4.0.3",
     "spotify-web-api-node": "^4.0.0"
   },
